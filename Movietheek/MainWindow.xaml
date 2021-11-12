@@ -1,0 +1,83 @@
+﻿<Window x:Class="Movietheek.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="400" Width="600" Loaded="Window_Loaded"
+        FontSize="14">
+  <Grid>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <GroupBox Header="Movie Collection">
+      <ListBox x:Name="listBoxMovieCollection"
+             ItemsSource="{Binding}"
+             Margin="5"
+             IsSynchronizedWithCurrentItem="True">
+        <ListBox.ItemTemplate>
+          <DataTemplate>
+            <StackPanel>
+              <TextBlock Text="{Binding Path=Title}"/>
+            </StackPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+    </GroupBox>
+    <StackPanel Grid.Column="1">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <GroupBox Header="Movie Details" Name="groupBox1">
+          <Grid>
+            <Grid Name="gridMovieDetails">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Label Content="Title:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+              <TextBox Grid.Column="1" Grid.Row="0" Margin="3" Name="titleTextBox" Height="23" 
+                       Text="{Binding Path=Title, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" VerticalAlignment="Stretch"/>
+              <Label Content="Rating:" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+              <TextBox Grid.Column="1" Grid.Row="1" Margin="3" Name="ratingTextBox" Height="23"
+                       Text="{Binding Path=Rating, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" VerticalAlignment="Stretch" />
+              <Label Content="Genre:" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+              <TextBox Grid.Column="1" Grid.Row="2" Margin="3" Name="genreTextBox" Height="23"
+                       Text="{Binding Path=Genre, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" 
+                       VerticalAlignment="Stretch"/>
+            </Grid>
+          </Grid>
+        </GroupBox>
+      </Grid>
+      <GroupBox Grid.Column="1" Header="Add a movie" Name="groupBoxAddMovie">
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*" />
+            <ColumnDefinition Width="50*" />
+          </Grid.ColumnDefinitions>
+          <Label Content="Title" Name="labelTitle" VerticalAlignment="Center" />
+          <Label Content="Genre" Height="28" Name="labelGenre" VerticalAlignment="Center" Grid.Row="1" />
+          <Label Content="Rating" Height="28" Name="labelRating" VerticalAlignment="Center" Grid.Row="2" />
+          <TextBox Grid.Column="1" Height="23" Name="textBoxTitle" VerticalAlignment="Center" />
+          <TextBox Grid.Column="1" Grid.Row="1" Name="textBoxGenre" VerticalAlignment="Center" />
+          <TextBox Grid.Column="1" Grid.Row="2" Name="textBoxRating" VerticalAlignment="Center"/>
+        </Grid>
+      </GroupBox>
+      <StackPanel Orientation="Horizontal" Margin="5">
+        <Button Content="Add New Movie" x:Name="buttonAddNew" Click="buttonAddNew_Click" />
+        <Button Content="Delete" x:Name="buttonDelete" Click="buttonDelete_Click" />
+        <Button Content="Save to disc" x:Name="buttonSave" Click="buttonSave_Click" />
+      </StackPanel>
+    </StackPanel>
+  </Grid>
+</Window>
